@@ -2,13 +2,17 @@ FROM node:12 as builder
 WORKDIR /app
 COPY package*.json ./
 
+# 添加代理
 ENV MY_PROXY_URL="http://192.168.150.120:7890"
 ENV HTTP_PROXY=$MY_PROXY_URL \
     HTTPS_PROXY=$MY_PROXY_URL \
     FTP_PROXY=$MY_PROXY_URL \
     http_proxy=$MY_PROXY_URL \
     https_proxy=$MY_PROXY_URL \
-    ftp_proxy=$MY_PROXY_UR
+    ftp_proxy=$MY_PROXY_URL
+
+RUN npm install
+
 
 COPY . .
 ARG API_URI
