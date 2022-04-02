@@ -94,18 +94,25 @@ To compile the app run:
 $ npm run build
 ```
 
+<br>
 To compile the app and export storefront to the static HTML run:
+
+> 注意：这个命令一般用于生成环境，生成的静态资源文件放在nginx 服务的路径下，由 nginx 代理静态资源，静态资源文件路径 `./disk`
 
 ```
 $ npm run build:export
-```
+```  
 
+<br>
 To compile the app and run it in production mode with next server run:
+
+> 该命令是用 next 本身服务进行静态资源代理
 
 ```
 $ npm run build:start
 ```
 
+<br>
 In order to enable Apollo Devtools in the production version, set the environmental variable
 
 ```
