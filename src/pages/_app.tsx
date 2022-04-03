@@ -88,6 +88,11 @@ const App = ({
       <link rel="icon" type="image/png" href="/favicon-36.png" />
       <link rel="manifest" href="/manifest.json" />
     </Head>
+    <img
+      src="https://vercel.saleor.cloud/media/products/image_3143ec9f.png"
+      srcSet="https://vercel.saleor.cloud/media/products/image_3143ec9f.png 1x"
+      alt="t-shirt"
+    />
     <ThemeProvider theme={defaultTheme}>
       <AlertProvider
         template={NotificationTemplate as any}
