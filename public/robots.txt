@@ -1,0 +1,15 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account/*
+
+# Host
+Host: https://www.casecasy.com
+
+# Sitemaps
+Sitemap: https://www.casecasy.com/sitemap.xml
