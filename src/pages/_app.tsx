@@ -81,6 +81,7 @@ const App = ({
   <>
     <Head>
       <title>Demo PWA Storefront – Saleor Commerce</title>
+      <meta name="p:domain_verify" content="1e398b2b90479f471858244d96d4e8ab" />
       <meta name="robots" content="index,follow" />
       <link rel="preconnect" href={apiUrl} />
       <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
