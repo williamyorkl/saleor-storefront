@@ -39,7 +39,7 @@ const extractMeta = (product: ProductDetails, url: string) => ({
   description: product.seoDescription || product.description,
   image: product?.thumbnail?.url || null,
   title: product.seoTitle || product.name,
-  type: "product.item",
+  type: "product",
   url: window.location.href,
 });
 
