@@ -89,13 +89,6 @@ const App = ({
       <link rel="manifest" href="/manifest.json" />
     </Head>
 
-    <div style={{ width: "250px" }}>
-      <img
-        src="https://vercel.saleor.cloud/media/__sized__/products/image_3143ec9f-thumbnail-255x255.png"
-        srcSet="https://vercel.saleor.cloud/media/__sized__/products/image_3143ec9f-thumbnail-255x255.png 1x, https://vercel.saleor.cloud/media/__sized__/products/image_3143ec9f-thumbnail-510x510.png 2x"
-        alt=""
-      />
-    </div>
     <ThemeProvider theme={defaultTheme}>
       <AlertProvider
         template={NotificationTemplate as any}

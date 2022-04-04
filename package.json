@@ -189,11 +189,11 @@
   "scripts": {
     "test": "cross-env LANGUAGE_LOCALE=en-US jest --runInBand --config .jest/config.json",
     "start": "next dev -p 3765",
-    "start:optimize": "cross-env OPTIMIZE=true next dev -p 3000",
+    "start:optimize": "cross-env OPTIMIZE=true next dev -p 3765",
     "start:heroku": "next start -p $PORT",
     "start:worker": "cross-env SERVICE_WORKER=true npm run start",
     "build": "next build",
-    "build:start": "npm run build && next start",
+    "build:start": "npm run build && next start -p 3765",
     "build:export": "cross-env NEXT_EXPORT=true npm run build && cross-env NEXT_EXPORT=true next export -o dist",
     "storybook": "start-storybook -p 9002",
     "build-storybook": "build-storybook -o ./dist/storybook",
