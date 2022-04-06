@@ -8,6 +8,7 @@ import type {
 } from "next/app";
 import NextApp from "next/app";
 import Head from "next/head";
+import Image from "next/image";
 import * as React from "react";
 import { positions, Provider as AlertProvider } from "react-alert";
 import TagManager from "react-gtm-module";
@@ -70,6 +71,17 @@ const notificationConfig = { position: positions.BOTTOM_RIGHT, timeout: 2500 };
 
 type AppProps = NextAppProps & ShopConfig & { messages: LocaleMessages };
 
+const TestImg = () => {
+  return (
+    <Image
+      src="http://192.168.150.243:8000/media/__sized__/products/AtDbofhyhmA_camera_cover_1_561cb30d-thumbnail-255x255.png"
+      alt="good"
+      width="300px"
+      height="300px"
+    />
+  );
+};
+
 const App = ({
   Component,
   pageProps,
@@ -77,43 +89,61 @@ const App = ({
   mainMenu,
   messages,
   shopConfig,
-}: AppProps) => (
-  <>
-    <Head>
-      <title>Demo PWA Storefront – Saleor Commerce</title>
-      <meta name="p:domain_verify" content="1e398b2b90479f471858244d96d4e8ab" />
-      <meta name="robots" content="index,follow" />
-      <link rel="preconnect" href={apiUrl} />
-      <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
-      <link rel="icon" type="image/png" href="/favicon-36.png" />
-      <link rel="manifest" href="/manifest.json" />
-    </Head>
+}: AppProps) => {
+  const getLayout =
+    (Component as any).getLayout ??
+    (page => <div className="test00003">{page}</div>);
 
-    <ThemeProvider theme={defaultTheme}>
-      <AlertProvider
-        template={NotificationTemplate as any}
-        {...notificationConfig}
-      >
-        <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
-          <LocaleProvider messages={messages}>
-            <GlobalStyle />
-            <NextQueryParamProvider>
-              <SaleorProvider config={saleorConfig}>
-                <StorefrontApp
-                  footer={footer}
-                  mainMenu={mainMenu}
-                  shopConfig={shopConfig}
-                >
-                  <Component {...pageProps} />
-                </StorefrontApp>
-              </SaleorProvider>
-            </NextQueryParamProvider>
-          </LocaleProvider>
-        </ServiceWorkerProvider>
-      </AlertProvider>
-    </ThemeProvider>
-  </>
-);
+  return (
+    <>
+      <Head>
+        <title>Demo PWA Storefront – Saleor Commerce</title>
+        <meta
+          name="p:domain_verify"
+          content="1e398b2b90479f471858244d96d4e8ab"
+        />
+        <meta name="robots" content="index,follow" />
+        <link rel="preconnect" href={apiUrl} />
+        <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+        <link rel="icon" type="image/png" href="/favicon-36.png" />
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
+
+      <ThemeProvider theme={defaultTheme}>
+        <AlertProvider
+          template={NotificationTemplate as any}
+          {...notificationConfig}
+        >
+          <ServiceWorkerProvider timeout={serviceWorkerTimeout}>
+            <LocaleProvider messages={messages}>
+              <GlobalStyle />
+              <NextQueryParamProvider>
+                <TestImg />
+                {/* NOTE - 经测试，放在这里可以出来 img tag */}
+
+                <SaleorProvider config={saleorConfig}>
+                  {/* NOTE - 经测试，放在这里不可以出来 img tag */}
+                  {/* <TestImg /> */}
+                  {getLayout(<Component {...pageProps} />)}
+
+                  <StorefrontApp
+                    footer={footer}
+                    mainMenu={mainMenu}
+                    shopConfig={shopConfig}
+                  >
+                    {/* {getLayout(<Component {...pageProps} />)} */}
+
+                    {/* <Component {...pageProps} /> */}
+                  </StorefrontApp>
+                </SaleorProvider>
+              </NextQueryParamProvider>
+            </LocaleProvider>
+          </ServiceWorkerProvider>
+        </AlertProvider>
+      </ThemeProvider>
+    </>
+  );
+};
 
 // Fetch shop config only once and cache it.
 let shopConfig: ShopConfig | null = null;

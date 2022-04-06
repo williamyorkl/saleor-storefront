@@ -6,6 +6,7 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
 import { Loader, OfflinePlaceholder } from "@components/atoms";
+import { Layout } from "@temp/components/Layout";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -128,4 +129,8 @@ export const ProductPage: NextPage<ProductPageProps> = ({ data: product }) => {
       }}
     </NetworkStatus>
   );
+};
+
+(ProductPage as any).getLayout = function getLayout(page: any) {
+  return <Layout>{page}</Layout>;
 };

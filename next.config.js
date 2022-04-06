@@ -18,6 +18,10 @@ module.exports = withPlugins(
     [withProdConfig, {}, ["!" + PHASE_DEVELOPMENT_SERVER]],
   ],
   {
+    images: {
+      domains: ["192.168.150.243", "vercel.saleor.cloud", "img.youtube.com"], // TODO - 写成动态获取 env
+      formats: ["image/avif", "image/webp"],
+    },
     async headers() {
       return [
         {

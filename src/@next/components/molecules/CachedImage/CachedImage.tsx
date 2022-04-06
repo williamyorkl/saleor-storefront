@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 import { PlaceholderImage } from "@components/atoms";
@@ -54,5 +55,6 @@ export const CachedImage: React.FC<IImage> = ({
       // navigator.onLine is not always accurate
       onError={() => setUnavailable(true)}
     />
+    // <Image src={url} alt={alt} width="100%" height="100%" />
   );
 };
