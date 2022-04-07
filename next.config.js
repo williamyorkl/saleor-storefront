@@ -33,6 +33,11 @@ module.exports = withPlugins(
               key: "strict-transport-security",
               value: "max-age=31536000; includeSubDomains",
             },
+            // NOTE - 配置请求后台时，生成静态资源文件为 https
+            {
+              key: "X-Forwarded-Proto",
+              value: "https",
+            },
           ],
         },
       ];
