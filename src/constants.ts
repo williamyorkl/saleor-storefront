@@ -17,9 +17,9 @@ export const exportMode = process.env.NEXT_EXPORT === "true";
 
 export const ssrMode = typeof window === "undefined";
 
+// eslint-disable-next-line radix
 export const incrementalStaticRegenerationRevalidate = parseInt(
-  process.env.INCREMENTAL_STATIC_REGENERATION_REVALIDATE!,
-  10
+  process.env.INCREMENTAL_STATIC_REGENERATION_REVALIDATE!
 );
 
 export const staticPathsFetchBatch = 50;
