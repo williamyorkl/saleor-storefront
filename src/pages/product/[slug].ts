@@ -39,7 +39,10 @@ export const getStaticProps: GetStaticProps<
   const { data } = await api.products.getDetails({
     slug: params.slug,
     channel: channelSlug,
-    variantSelection: VariantAttributeScope.VARIANT_SELECTION,
+
+    // TODO - 后果有待查明，但 VariantAttributeScope.VARIANT_SELECTION 导致变体无效
+    // variantSelection: VariantAttributeScope.VARIANT_SELECTION,
+    variantSelection: VariantAttributeScope.ALL,
   });
 
   return {
