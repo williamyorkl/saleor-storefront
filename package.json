@@ -190,7 +190,6 @@
     "test": "cross-env LANGUAGE_LOCALE=en-US jest --runInBand --config .jest/config.json",
     "start": "next dev -p 3765",
     "start:optimize": "cross-env OPTIMIZE=true next dev -p 3765",
-    "start:vercel": "next build && next start",
     "start:heroku": "next start -p $PORT",
     "start:worker": "cross-env SERVICE_WORKER=true npm run start",
     "build": "next build",
