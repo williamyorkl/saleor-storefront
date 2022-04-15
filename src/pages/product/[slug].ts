@@ -45,6 +45,8 @@ export const getStaticProps: GetStaticProps<
     variantSelection: VariantAttributeScope.ALL,
   });
 
+  console.log("============> data generate: ", data);
+
   return {
     revalidate: incrementalStaticRegenerationRevalidate,
     props: { data: data || null, params },
