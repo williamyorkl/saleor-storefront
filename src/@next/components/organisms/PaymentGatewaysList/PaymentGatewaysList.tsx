@@ -7,6 +7,7 @@ import {
   AdyenPaymentGateway,
   BraintreePaymentGateway,
   DummyPaymentGateway,
+  PaypalPaymentGateway,
   StripePaymentGateway,
 } from "..";
 import * as S from "./styles";
@@ -17,7 +18,8 @@ import { IProps } from "./types";
  */
 const PaymentGatewaysList: React.FC<IProps> = ({
   paymentGateways,
-  selectedPaymentGateway,
+  // 设置默认收款方式是 paypal
+  selectedPaymentGateway = "mirumee.payments.paypal",
   selectedPaymentGatewayToken,
   selectPaymentGateway,
   formRef,
@@ -68,6 +70,7 @@ const PaymentGatewaysList: React.FC<IProps> = ({
               </div>
             );
 
+          // NOTE - DUMMY付款方式只是用于测试购物流程而已
           case PROVIDERS.DUMMY.label:
             return (
               <div key={index}>
@@ -160,6 +163,39 @@ const PaymentGatewaysList: React.FC<IProps> = ({
                     scriptConfig={PROVIDERS.ADYEN.script}
                     styleConfig={PROVIDERS.ADYEN.style}
                     processPayment={() => processPayment(id)}
+                    submitPayment={submitPayment}
+                    submitPaymentSuccess={submitPaymentSuccess}
+                    errors={errors}
+                    onError={onError}
+                  />
+                )}
+              </div>
+            );
+
+          case PROVIDERS.PAYPAL.label:
+            return (
+              <div key={index}>
+                <S.Tile checked={checked}>
+                  <Radio
+                    data-test="checkoutPaymentGatewayPaypalInput"
+                    name="payment-method"
+                    value="paypal"
+                    checked={checked}
+                    onChange={() =>
+                      selectPaymentGateway && selectPaymentGateway(id)
+                    }
+                    customLabel
+                  >
+                    <span data-test="checkoutPaymentGatewayPaypalName">
+                      {name}
+                    </span>
+                  </Radio>
+                </S.Tile>
+                {checked && (
+                  <PaypalPaymentGateway
+                    config={config}
+                    formRef={formRef}
+                    processPayment={processPayment}
                     submitPayment={submitPayment}
                     submitPaymentSuccess={submitPaymentSuccess}
                     errors={errors}

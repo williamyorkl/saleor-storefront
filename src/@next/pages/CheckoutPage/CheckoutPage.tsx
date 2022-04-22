@@ -57,6 +57,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     createPayment,
     completeCheckout,
   } = useCheckout();
+
   const intl = useIntl();
   const isFullyLoaded = cartLoaded && checkoutLoaded;
 
@@ -200,7 +201,8 @@ const CheckoutPage: React.FC<NextPage> = () => {
      */
     if (
       payment?.gateway !== paymentGatewayNames.adyen &&
-      payment?.gateway !== paymentGatewayNames.stripe
+      payment?.gateway !== paymentGatewayNames.stripe &&
+      payment?.gateway !== paymentGatewayNames.paypal
     ) {
       const paymentStepLink = steps.find(
         step => step.step === CheckoutStep.Payment

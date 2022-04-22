@@ -20,6 +20,7 @@ export * from "./StripeCreditCardForm";
 export * from "./BraintreePaymentGateway";
 export * from "./DummyPaymentGateway";
 export * from "./StripePaymentGateway";
+export * from "./PaypalPaymentGateway";
 export * from "./PaymentGatewaysList";
 export * from "./CheckoutAddress";
 export * from "./CheckoutShipping";

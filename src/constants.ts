@@ -34,4 +34,5 @@ export const paymentGatewayNames = {
   dummy: "mirumee.payments.dummy",
   adyen: "mirumee.payments.adyen",
   stripe: "saleor.payments.stripe",
+  paypal: "mirumee.payments.paypal",
 };

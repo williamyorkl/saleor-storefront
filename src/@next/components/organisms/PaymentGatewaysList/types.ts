@@ -44,7 +44,15 @@ export interface IProps {
     token?: string,
     cardData?: ICardData
   ) => void;
+
+  /**
+   * 提交 payment
+   */
   submitPayment: (data?: object) => Promise<IPaymentSubmitResult>;
+
+  /**
+   * payment 成功
+   */
   submitPaymentSuccess: (
     order?: CompleteCheckout_checkoutComplete_order | null
   ) => void;
